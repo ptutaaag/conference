@@ -26,6 +26,7 @@ if (isset($_SESSION['iduser'])) {
         $_SESSION['iduser'] = $iduser;
         $_SESSION['login'] = $login;
         echo $_SESSION['iduser'] . " keskon attend pour yalé";
+
         header('Location: Accueil.php');
     } else {
         echo "

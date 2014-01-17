@@ -38,15 +38,14 @@ class utilisateur
 
 
             // on crée la requête SQL
-            $sql = 'SELECT * FROM Utilisateurs where login='."\"".$login.'" and password='."\"".$mdp."\";";
-
+            $sql = 'SELECT * FROM utilisateur  where Mail='."\"".$login.'" and Motdepasse='."\"".$mdp."\";";
             // on envoie la requête
             $db2 = new mysqli($_SESSION['db_host'], $_SESSION['db_user'], $_SESSION['db_password'], $_SESSION['db_dbname']);
             $res2 = mysqli_query($db2,$sql)  or die(mysqli_connect_error());
             if(mysqli_num_rows($res2)>0) {
                 while($resultat = mysqli_fetch_object($res2))
                 {
-                    $iduser=$resultat->id;
+                    $iduser=$resultat->idUtilisateur;
                 }
                 mysqli_close($db2);
                 return $iduser;
