@@ -16,11 +16,8 @@ session_start();
 </div>
 <ul id="menu">
     <li><a href="index.php">Accueil</a></li>
-    <li><a href="ListeEvenement.php">Liste des évènements</a></li>
-    <li><a href="ListeInscrit.php">Liste des inscrits</a></li>
-    <li>
-        <label>Recherche:</label>
-        <input type="champ1" name="nomrecherche" id="recherche"/><br/></li>
+    <li><a href="ListeDesEvenements.php">Liste des évènements</a></li>
+    <li><a href="ListeDesInscrits.php">Liste des inscrits</a></li>
 	<?php if(isset($_SESSION['iduser'])){
 	echo "<li><a href=\"PageUtilisateur.php\">Membres</a></li>";
 	echo "<li><a href=\"Deconnexion.php\">Déconnexion</a></li>";

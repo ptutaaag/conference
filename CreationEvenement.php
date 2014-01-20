@@ -1,11 +1,5 @@
 <?php
 include("Evenement.php");
-/**
- * Created by PhpStorm.
- * User: Geoffrey
- * Date: 17/01/14
- * Time: 10:07
- */
 
 
 if (isset($_POST['nomEvenement'])==false && isset($_POST['contenuEvenement'])==false && isset($_POST['lieuEvenement'])==false){

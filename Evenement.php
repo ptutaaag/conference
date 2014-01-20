@@ -5,12 +5,6 @@ $_SESSION['db_host']=$host;
 $_SESSION['db_user']=$user;
 $_SESSION['db_password']=$password;
 $_SESSION['db_dbname']=$dbname;
-/**
- * Created by PhpStorm.
- * User: Geoffrey
- * Date: 17/01/14
- * Time: 09:24
- */
 
 class evenement {
     var $dateDeDebut;
