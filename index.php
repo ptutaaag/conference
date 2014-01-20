@@ -20,6 +20,7 @@ session_start();
     <li><a href="ListeDesInscrits.php">Liste des inscrits</a></li>
 	<?php if(isset($_SESSION['iduser'])){
 	echo "<li><a href=\"PageUtilisateur.php\">Membres</a></li>";
+	echo "<li><a href=\"MessageUser.php\">Messagerie</a></li>";
 	echo "<li><a href=\"Deconnexion.php\">Déconnexion</a></li>";
 	}else{
     echo "<li><a href=\"Connexion.php\">Connexion</a></li>";

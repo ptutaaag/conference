@@ -7,7 +7,7 @@ $res = mysqli_query($connection, $req) or die ("Erreur dans la récupération de
 
 while ($ligne = mysqli_fetch_object($res))
 {
-    echo "<div class='BoutonEvenement'><a href='PageUtilisateur.php'>".$ligne->Nom." ".$ligne->Prenom."<a></div>";
+    echo "<a href='PageUtilisateur.php?id=".$ligne->idUtilisateur."'>".$ligne->Nom." ".$ligne->Prenom."</a><br/>";
 }
 mysqli_close($connection);
 ?>
