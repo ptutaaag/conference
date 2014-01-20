@@ -1,0 +1,114 @@
+-- phpMyAdmin SQL Dump
+-- version OVH
+-- http://www.phpmyadmin.net
+--
+-- Client: mysql51-101.perso
+-- Généré le : Lun 20 Janvier 2014 à 12:01
+-- Version du serveur: 5.1.66
+-- Version de PHP: 5.3.8
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Base de données: `pommedepweb`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `agenda`
+--
+
+CREATE TABLE IF NOT EXISTS `agenda` (
+  `idAgenda` int(5) NOT NULL AUTO_INCREMENT,
+  `idUtilisateur` int(5) NOT NULL,
+  `idEvenement` int(5) NOT NULL,
+  PRIMARY KEY (`idAgenda`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Conference`
+--
+
+CREATE TABLE IF NOT EXISTS `Conference` (
+  `idConference` tinyint(5) NOT NULL AUTO_INCREMENT,
+  `NomConference` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `DateDebut` datetime NOT NULL,
+  `DateFin` datetime NOT NULL,
+  PRIMARY KEY (`idConference`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `evenement`
+--
+
+CREATE TABLE IF NOT EXISTS `evenement` (
+  `idEvenement` int(5) NOT NULL AUTO_INCREMENT,
+  `NomEvent` varchar(20) COLLATE utf8_bin NOT NULL,
+  `Description` varchar(100) COLLATE utf8_bin NOT NULL,
+  `HeureDebut` datetime NOT NULL,
+  `HeureFin` datetime NOT NULL,
+  `Lieu` varchar(20) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`idEvenement`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=28 ;
+
+--
+-- Contenu de la table `evenement`
+--
+
+INSERT INTO `evenement` (`idEvenement`, `NomEvent`, `Description`, `HeureDebut`, `HeureFin`, `Lieu`) VALUES
+(21, 'Evenement 1', 'Event numero 1', '2001-05-31 12:22:56', '2001-05-31 12:22:56', 'Lyon'),
+(22, 'Evenement 2', 'Event 2', '2001-05-31 12:22:56', '2021-05-31 12:22:56', 'Lyon'),
+(23, 'Parioqsdk', 'odskqsokdkqsodqokdqkodqsokdko', '2001-05-31 12:22:56', '2021-05-31 12:22:56', 'qpsdlqlpsd'),
+(24, 'sfok', 'okdzok', '2001-05-31 12:22:56', '2021-05-31 12:22:56', 'qoskd'),
+(25, 'PTUT', 'Ptut', '2001-05-31 12:22:56', '2021-05-31 12:22:56', 'Lyon'),
+(26, '', '', '2001-05-31 12:22:56', '2021-05-31 12:22:56', ''),
+(27, '', '', '2001-05-31 12:22:56', '2021-05-31 12:22:56', '');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `message`
+--
+
+CREATE TABLE IF NOT EXISTS `message` (
+  `idMessage` int(100) NOT NULL AUTO_INCREMENT,
+  `idEmetteur` varchar(5) COLLATE utf8_bin NOT NULL,
+  `idDestinataire` varchar(5) COLLATE utf8_bin NOT NULL,
+  `Message` varchar(500) COLLATE utf8_bin NOT NULL,
+  `Objet` varchar(20) COLLATE utf8_bin NOT NULL,
+  `DateEnvoie` datetime NOT NULL,
+  `Lu` tinyint(1) NOT NULL,
+  PRIMARY KEY (`idMessage`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `utilisateur`
+--
+
+CREATE TABLE IF NOT EXISTS `utilisateur` (
+  `idUtilisateur` int(5) NOT NULL AUTO_INCREMENT,
+  `Nom` varchar(20) COLLATE utf8_bin NOT NULL,
+  `Prenom` varchar(20) COLLATE utf8_bin NOT NULL,
+  `Mail` varchar(20) COLLATE utf8_bin NOT NULL,
+  `Motdepasse` varchar(20) COLLATE utf8_bin NOT NULL,
+  `Admin` tinyint(1) NOT NULL,
+  `Conferencier` tinyint(1) NOT NULL,
+  `Avatar` varchar(40) COLLATE utf8_bin NOT NULL,
+  `DateInscritpion` datetime NOT NULL,
+  PRIMARY KEY (`idUtilisateur`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `utilisateur`
+--
+
+INSERT INTO `utilisateur` (`idUtilisateur`, `Nom`, `Prenom`, `Mail`, `Motdepasse`, `Admin`, `Conferencier`, `Avatar`, `DateInscritpion`) VALUES
+(1, 'admin', 'admin', 'admin@admin.admin', 'admin', 1, 1, '', '2014-01-15 00:00:00');
