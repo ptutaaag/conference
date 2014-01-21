@@ -29,6 +29,10 @@
     }
     else {
 
+	$sql1 = 'UPDATE message SET lu=1 WHERE idMessage='.$_GET['idMessage'];
+	echo $sql1;
+	$req2 = mysqli_query($db,$sql1) or die(mysqli_connect_error());
+	
     $data = mysqli_fetch_array($req);
     echo $data['Date'] , ' - ' , stripslashes(htmlentities(trim($data['Objet']))) , '</a> [ Message de ' , stripslashes(htmlentities(trim($data['expediteur']))) , ' ]<br/><br/>';
     echo nl2br(stripslashes(htmlentities(trim($data['Message']))));

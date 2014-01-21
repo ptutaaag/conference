@@ -31,6 +31,6 @@
     mysqli_free_result($res);
     mysqli_close($db);
     ?>
-    <br /><a href="envoyer.php">Envoyer un message</a>
+    <br/><a href="Envoyer.php">Envoyer un message</a>
     </body>
     </html>
