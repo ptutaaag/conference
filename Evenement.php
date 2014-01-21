@@ -18,6 +18,7 @@ class evenement {
     var $description;
     var $titre;
     var $lieu;
+    var $utilisateur;
 
     function evenement()
     {
@@ -29,8 +30,9 @@ class evenement {
          $dateDeFin=$this->dateDeFin;
          $titre=$this->titre;
          $description=$this->description;
+        $utilisateur = $this->utilisateur;
         $lieu = $this->lieu;
-        $requete= "INSERT INTO evenement (NomEvent, Description, HeureDebut, HeureFin, Lieu) VALUES ('".$titre."','".$description."','".$dateDeDebut."','".$dateDeFin."','".$lieu."') ";
+        $requete= "INSERT INTO evenement (NomEvent, Description, HeureDebut, HeureFin, Lieu, idCreateur) VALUES ('".$titre."','".$description."','".$dateDeDebut."','".$dateDeFin."','".$lieu."',".$utilisateur.") ";
         $connection = mysqli_connect($_SESSION['db_host'],$_SESSION['db_user'],$_SESSION['db_password'],$_SESSION['db_dbname']);
         $resultat = mysqli_query($connection,$requete) or die ("Erreur lors de l'ajout".$requete);
         return $resultat;
