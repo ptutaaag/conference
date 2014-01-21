@@ -53,6 +53,7 @@
 	echo "<br/>Date d'inscription: ".$Date."<br/>";
 	if(!isset($_GET['id'])||$_GET['id']==$_SESSION['iduser']){
 	echo "<a href=\"ModifUser.php\"><input type=\"button\" value=\"Modifier profil\"/></a>";
+	echo "<a href=\"Agenda.php\"><input type=\"button\" value=\"Créer un emploi du temp\"\></a>";
 	}
 	?>
 	<a href="index.php"><input type="button" value="Accueil"/></a>

@@ -8,7 +8,7 @@
 <?php
 include("Evenement.php");
 
-$idUser = 1;
+$idUser = $_SESSION['iduser'];
 
 if (isset($_POST['nomEvenement'])==false && isset($_POST['contenuEvenement'])==false && isset($_POST['lieuEvenement'])==false){
 

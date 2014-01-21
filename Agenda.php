@@ -10,7 +10,7 @@ include ("VerifAjoutAgenda.php");
  */
 
 
-$idUser = 1;
+$idUser = $_SESSION['iduser'];
 
 
 $connection = mysqli_connect($_SESSION['db_host'],$_SESSION['db_user'],$_SESSION['db_password'],$_SESSION['db_dbname']);
@@ -26,8 +26,12 @@ $res = mysqli_query($connection, $req) or die ("Erreur dans la récupération de
 echo "<form method='post' name='formAgenda'>";
 while ($ligne = mysqli_fetch_object($res))
 {
+	$req = "select * from agenda where idEvenement =".$ligne->idEvenement;
+	$res2 = mysqli_query($connection, $req);
+	if (mysqli_num_rows($res2)==0){
     echo "<input type='radio' name='choixEvent' value='$ligne->idEvenement' >$ligne->NomEvent</input>";
     echo "<br/>";
+	}
 }
 
 echo "<input type='submit' name='valider' value='Ajouter les evenements séléctionné'> </input>";

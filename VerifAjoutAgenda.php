@@ -40,18 +40,18 @@ function verifDate ($idEvenement, $idAgenda)
     $finAge = date_format($timestamp,'YmdHi');
 
 
-    if ($debEvent<$debAge)
+    if ($debEvent<=$debAge)
     {
-        if ($debAge<$finEvent )
+        if ($debAge<=$finEvent )
             return false;
         return true;
 
     }
 
 
-    if ($debEvent<$finAge)
+    if ($debEvent<=$finAge)
     {
-        if ($finEvent>$finAge )
+        if ($finEvent>=$finAge )
             return false;
         return true;
 
