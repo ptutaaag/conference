@@ -1,83 +1,73 @@
-    <?php
+﻿    <?php
     session_start();
-    // on vérifie toujours qu'il s'agit d'un membre qui est connecté
     if (!isset($_SESSION['login'])) {
-    // si ce n'est pas le cas, on le redirige vers l'accueil
     header ('Location: index.php');
     exit();
     }
 
-    // on teste si le formulaire a bien été soumis
     if (isset($_POST['go']) && $_POST['go'] == 'Envoyer') {
-    if (empty($_POST['destinataire']) || empty($_POST['titre']) || empty($_POST['message'])) {
-    $erreur = 'Au moins un des champs est vide.';
-    }
+		if(empty($_POST['destinataire'])) echo 'Le mail est vide.';
+		else if(empty($_POST['objet'])) echo 'L\'objet est vide.';
+		else if(empty($_POST['message'])) echo 'Le message est vide.';	
     else {
-    $base = mysql_connect ('serveur', 'login', 'password');
-    mysql_select_db ('nom_base', $base);
+	echo 'bonjour';
+		$db = new mysqli($_SESSION['db_host'], $_SESSION['db_user'], $_SESSION['db_password'], $_SESSION['db_dbname']);
+	echo $_SESSION['db_host'];
+    $sql = 'INSERT INTO message VALUES("", "'.$_SESSION['iduser'].'", "'.$_POST['destinataire'].'", "'.mysql_real_escape_string($_POST['message']).'", "'.mysql_real_escape_string($_POST['objet']).'","'.date("Y-m-d H:i:s").'",0)';
+    echo $sql;
+	mysqli_query($db,$sql) or die(mysqli_connect_error());
 
-    // si tout a été bien rempli, on insère le message dans notre table SQL
-    $sql = 'INSERT INTO messages VALUES("", "'.$_SESSION['id'].'", "'.$_POST['destinataire'].'", "'.date("Y-m-d H:i:s").'", "'.mysql_escape_string($_POST['titre']).'", "'.mysql_escape_string($_POST['message']).'")';
-    mysql_query($sql) or die('Erreur SQL !'.$sql.'<br />'.mysql_error());
+    mysqli_close($db);
 
-    mysql_close();
-
-    header('Location: membre.php');
+    header('Location: MessageUser.php');
     exit();
     }
     }
     ?>
-
     <html>
     <head>
-    <title>Espace membre</title>
+    <title>Envoi d'un message</title>
     </head>
 
     <body>
-    <a href="membre.php">Retour à l'accueil</a><br /><br />
-    Envoyer un message :<br /><br />
+    <a href="index.php">Retour à l'accueil</a><br/><br/>
+    Envoyer un message :<br/><br/>
 
     <?php
-    $base = mysql_connect ('serveur', 'login', 'password');
-    mysql_select_db ('nom_base', $base);
+	$db = new mysqli($_SESSION['db_host'], $_SESSION['db_user'], $_SESSION['db_password'], $_SESSION['db_dbname']);
 
-    // on prépare une requete SQL selectionnant tous les login des membres du site en prenant soin de ne pas selectionner notre propre login, le tout, servant à alimenter le menu déroulant spécifiant le destinataire du message
-    $sql = 'SELECT membre.login as nom_destinataire, membre.id as id_destinataire FROM membre WHERE id <> "'.$_SESSION['id'].'" ORDER BY login ASC';
-    // on lance notre requete SQL
-    $req = mysql_query($sql) or die('Erreur SQL !<br />'.$sql.'<br />'.mysql_error());
-    $nb = mysql_num_rows ($req);
+    $sql = 'SELECT Mail as nom_destinataire, idUtilisateur as id_destinataire FROM utilisateur WHERE idUtilisateur <> "'.$_SESSION['iduser'].'" ORDER BY Mail ASC';
+
+    $req = mysqli_query($db,$sql) or die(mysqli_connect_error());
+    $nb = mysqli_num_rows ($req);
 
     if ($nb == 0) {
-    // si aucun membre n'a été trouvé, on affiche tout simplement aucun formulaire
-    echo 'Vous êtes le seul membre inscrit.';
+		echo 'Vous êtes le seul membre inscrit.';
     }
     else {
-    // si au moins un membre qui n'est pas nous même a été trouvé, on affiche le formulaire d'envoie de message
     ?>
-    <form action="envoyer.php" method="post">
-    Pour : <select name="destinataire">
+    <form action="Envoyer.php" method="post">
+    À : <select name="destinataire">
     <?php
-    // on alimente le menu déroulant avec les login des différents membres du site
-    while ($data = mysql_fetch_array($req)) {
-    echo '<option value="' , $data['id_destinataire'] , '">' , stripslashes(htmlentities(trim($data['nom_destinataire']))) , '</option>';
+    while ($data = mysqli_fetch_array($req)) {
+		echo '<option value="' , $data['id_destinataire'] , '">' , stripslashes(htmlentities(trim($data['nom_destinataire']))) , '</option>';
     }
     ?>
-    </select><br />
-    Titre : <input type="text" name="titre" value="<?php if (isset($_POST['titre'])) echo stripslashes(htmlentities(trim($_POST['titre']))); ?>"><br />
-    Message : <textarea name="message"><?php if (isset($_POST['message'])) echo stripslashes(htmlentities(trim($_POST['message']))); ?></textarea><br />
+    </select><br/>
+    Objet : <input type="text" name="objet" value="<?php if (isset($_POST['Objet'])) echo stripslashes(htmlentities(trim($_POST['Objet']))); ?>"><br />
+    Message : <textarea name="message"><?php if (isset($_POST['Message'])) echo stripslashes(htmlentities(trim($_POST['Message']))); ?></textarea><br />
     <input type="submit" name="go" value="Envoyer">
     </form>
+
     <?php
     }
-    mysql_free_result($req);
-    mysql_close();
-    ?>
-    </select>
+    mysqli_free_result($req);
+    mysqli_close($db);
+	?>
+	</select>
+	<?php
 
-    <br /><br /><a href="deconnexion.php">Déconnexion</a>
-    <?php
-    // si une erreur est survenue lors de la soumission du formulaire, on l'affiche
-    if (isset($erreur)) echo '<br /><br />',$erreur;
+    if (isset($erreur)) echo '<br/><br/>',$erreur;
     ?>
     </body>
     </html>
