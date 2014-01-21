@@ -12,7 +12,7 @@ $_SESSION['db_dbname']=$dbname;
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
-  <title>Securimage Example Form</title>
+  <title>Page d'inscription</title>
   <style type="text/css">
   <!--
   .error { color: #f00; font-weight: bold; font-size: 1.2em; }
@@ -24,52 +24,38 @@ $_SESSION['db_dbname']=$dbname;
   </style>
 </head>
 <body>
-    <legend>Example Form</legend>
-
-    <p class="note">
-      C'est caca
-    </p>
-
-    <?php
-
-    process_si_contact_form(); // Process the form, if it was submitted
-
-    if (isset($_SESSION['ctform']['error']) &&  $_SESSION['ctform']['error'] == true): /* The last form submission had 1 or more errors */ ?>
-    <span class="error">There was a problem with your submission.  Errors are displayed below in red.</span><br /><br />
-    <?php elseif (isset($_SESSION['ctform']['success']) && $_SESSION['ctform']['success'] == true): /* form was processed successfully */ ?>
-    <span class="success">The captcha was correct and the message has been sent!</span><br /><br />
-    <?php endif; ?>
-
+    <?php process_si_contact_form(); ?>
+    
     <form method="post" action="<?php echo htmlspecialchars($_SERVER['REQUEST_URI'] . $_SERVER['QUERY_STRING']) ?>" id="contact_form">
       <input type="hidden" name="do" value="contact" />
 
       <p>
-        <strong>Nom *:</strong>&nbsp; &nbsp;<?php echo @$_SESSION['ctform']['name_error'] ?><br />
+        <strong>Nom:</strong>&nbsp; &nbsp;<?php echo @$_SESSION['ctform']['name_error'] ?><br />
         <input type="text" name="ct_name" size="35" value="<?php echo htmlspecialchars(@$_SESSION['ctform']['ct_name']) ?>" />
       </p>
       
       <p>
-        <strong>Prénom *:</strong>&nbsp; &nbsp;<?php echo @$_SESSION['ctform']['fname_error'] ?><br />
+        <strong>Prénom:</strong>&nbsp; &nbsp;<?php echo @$_SESSION['ctform']['fname_error'] ?><br />
         <input type="text" name="ct_fname" size="35" value="<?php echo htmlspecialchars(@$_SESSION['ctform']['ct_fname']) ?>" />
       </p>
 
       <p>
-        <strong>Email *:</strong>&nbsp; &nbsp;<?php echo @$_SESSION['ctform']['email1_error'] ?><br />
+        <strong>Email:</strong>&nbsp; &nbsp;<?php echo @$_SESSION['ctform']['email1_error'] ?><br />
         <input type="text" name="ct_email1" size="35" value="<?php echo htmlspecialchars(@$_SESSION['ctform']['ct_email1']) ?>" />
       </p>
       
       <p>
-        <strong>Retaper l'Email *:</strong>&nbsp; &nbsp;<?php echo @$_SESSION['ctform']['email2_error'] ?><br />
+        <strong>Retaper l'Email:</strong>&nbsp; &nbsp;<?php echo @$_SESSION['ctform']['email2_error'] ?><br />
         <input type="text" name="ct_email2" size="35" value="<?php echo htmlspecialchars(@$_SESSION['ctform']['ct_email2']) ?>" />
       </p>
 
       <p>
-        <strong>Mot de passe: *</strong>&nbsp; &nbsp;<?php echo @$_SESSION['ctform']['pass1_error'] ?><br />
+        <strong>Mot de passe:</strong>&nbsp; &nbsp;<?php echo @$_SESSION['ctform']['pass1_error'] ?><br />
         <input type="password" name="ct_pass1" size="35" value="<?php echo htmlspecialchars(@$_SESSION['ctform']['ct_pass1']) ?>" />
       </p>
       
       <p>
-        <strong>Retaper le mot de passe: *</strong>&nbsp; &nbsp;<?php echo @$_SESSION['ctform']['pass2_error'] ?><br />
+        <strong>Retaper le mot de passe:</strong>&nbsp; &nbsp;<?php echo @$_SESSION['ctform']['pass2_error'] ?><br />
         <input type="password" name="ct_pass2" size="35" value="<?php echo htmlspecialchars(@$_SESSION['ctform']['ct_pass2']) ?>" />
       </p>
 
@@ -80,7 +66,7 @@ $_SESSION['db_dbname']=$dbname;
         </object>
         &nbsp;
         <a tabindex="-1" style="border-style: none;" href="#" title="Refresh Image" onclick="document.getElementById('siimage').src = './captcha/securimage_show.php?sid=' + Math.random(); this.blur(); return false"><img src="./captcha/images/refresh.png" alt="Reload Image" height="32" width="32" onclick="this.blur()" align="bottom" border="0" /></a><br />
-        <strong>Entre le Code *:</strong><br />
+        <strong>Entre le Code:</strong><br />
          <?php echo @$_SESSION['ctform']['captcha_error'] ?>
         <input type="text" name="ct_captcha" size="12" maxlength="16" />
       </p>
