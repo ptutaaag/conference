@@ -7,12 +7,6 @@
 </head>
 <?php
 include("Evenement.php");
-/**
- * Created by PhpStorm.
- * User: Geoffrey
- * Date: 17/01/14
- * Time: 10:07
- */
 
 $idUser = 1;
 

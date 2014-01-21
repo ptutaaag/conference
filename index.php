@@ -1,49 +1,33 @@
+<!DOCTYPE html>
 <?php
-require_once("params.inc.php");
-require_once('Utilisateur.php');
+session_start();
 ?>
-    <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="Style/Style1.css"/>
+    <title>Agenda</title>
+</head>
+<body>
+<div>
+    <img src="Images/imageaccueil.jpg" alt="Image d'accueil" title="Cliquer pour faire défiler les images"/>
+</div>
 
-    <html>
-    <head>
-        <meta http-equiv="Content-type" content="text/html; charset=UTF-8"/>
-        <link type="text/css" rel="stylesheet" href="Style1.css"/>
-        <title> Connexion </title>
-    </head>
+</div>
+<ul id="menu">
+    <li><a href="index.php">Accueil</a></li>
+    <li><a href="ListeDesEvenements.php">Liste des évènements</a></li>
+    <li><a href="ListeDesInscrits.php">Liste des inscrits</a></li>
+	<?php if(isset($_SESSION['iduser'])){
+	echo "<li><a href=\"PageUtilisateur.php\">Membres</a></li>";
+	echo "<li><a href=\"MessageUser.php\">Messagerie</a></li>";
+	echo "<li><a href=\"Deconnexion.php\">Déconnexion</a></li>";
+	}else{
+    echo "<li><a href=\"Connexion.php\">Connexion</a></li>";
+    echo "<li><a href=\"Inscription.php\">Inscription</a></li>";
+	}?>
+</ul>
+</div><br/>
 
-    <body>
-<?php
-if (isset($_SESSION['iduser'])) {
-    header('Location: index.php');
-} else {
-    $user = new utilisateur();
-    $login = $_POST['login'];
-    $mdp = $_POST['mdp'];
-    $iduser = $user->connexion($login, $mdp);
-
-    //si connexion a marché
-    if ($iduser > 0) {
-        $_SESSION['iduser'] = $iduser;
-        $_SESSION['login'] = $login;
-        echo $_SESSION['iduser'] . " keskon attend pour yalé";
-
-        header('Location: Accueil.php');
-    } else {
-        echo "
-    <div id='loginForm'>
-        <h2> Bienvenue sur le site </h2>
-        <form method='post' name='formConnec'>
-            <span> Login : </span>
-            <br/>
-            <input type='text' name='login' value='' > </input>
-            <br/>
-            <span> Mot de passe : </span>
-            <br/>
-            <input type='password' name='mdp'> </input>
-            <br/>
-            <input type='submit' name='valider' value='Connexion'> </input>
-        </form>
-    </div> ";
-    }
-}
-?>
+</body>
+</html>
