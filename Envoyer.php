@@ -34,7 +34,6 @@ if (isset($_POST['go']) && $_POST['go'] == 'Envoyer') {
 </head>
 
 <body>
-<a href="index.php">Retour à l'accueil</a><br/><br/>
 Envoyer un message :<br/><br/>
 
 <?php

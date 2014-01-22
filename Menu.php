@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Geoffrey
- * Date: 21/01/14
- * Time: 16:24
- */
+
 function afficherBanniere()
 {
     echo '<head><link rel="stylesheet" type="text/css" href="Style/Style1.css"/></head>';
@@ -26,11 +21,13 @@ function afficherBanniere()
         echo "<li><a href=\"PageUtilisateur.php\">Profil</a></li>";
         echo "<li><a href=\"MessageUser.php\">Messagerie (" . $nb_mess[0] . ")</a></li>";
         echo "<li><a href='Shoutbox.php'>Chat</a></li>";
+		echo "<li><a href=\"Contacter.php\">Contact</a></li>";
         echo "<li><a href=\"Deconnexion.php\">Déconnexion</a></li>";
     } else {
         echo "<li><a href=\"Connexion.php\">Connexion</a></li>";
         echo "<li><a href=\"Inscription.php\">Inscription</a></li>";
     }
+	
     echo '
 </ul>
 </div><br/><br/>';

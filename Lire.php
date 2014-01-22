@@ -1,5 +1,7 @@
 ﻿<?php
 session_start();
+include("Menu.php");
+afficherBanniere();
 if (!isset($_SESSION['login'])) {
     header('Location: index.php');
     exit();
@@ -9,6 +11,7 @@ if (!isset($_SESSION['login'])) {
 <html>
 <head>
     <title>Lecture de votre message :</title>
+	<meta http-equiv="Content-type" content="text/html; charset=UTF-8"/>
 </head>
 
 <body>
