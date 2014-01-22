@@ -1,32 +1,34 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8"/>
+
+    <title> Connexion </title>
+</head>
+
+<body>
 <?php
 require_once("params.inc.php");
 require_once('Utilisateur.php');
-?>
-    <!DOCTYPE html>
+include("Menu.php");
 
-    <html>
-    <head>
-        <meta http-equiv="Content-type" content="text/html; charset=UTF-8"/>
-        <link type="text/css" rel="stylesheet" href="Style1.css"/>
-        <title> Connexion </title>
-    </head>
+afficherBanniere();
 
-    <body>
-<?php
-    $user = new utilisateur();
-    $login = $_POST['login'];
-    $mdp = $_POST['mdp'];
-    $iduser = $user->connexion($login, $mdp);
+$user = new utilisateur();
+$login = $_POST['login'];
+$mdp = $_POST['mdp'];
+$iduser = $user->connexion($login, $mdp);
 
-    //si connexion a marché
-    if ($iduser > 0) {
-        $_SESSION['iduser'] = $iduser;
-        $_SESSION['login'] = $login;
-        echo $_SESSION['iduser'];
+//si connexion a marché
+if ($iduser > 0) {
+    $_SESSION['iduser'] = $iduser;
+    $_SESSION['login'] = $login;
+    echo $_SESSION['iduser'];
 
-        header('Location: index.php');
-    } else {
-        echo "
+    header('Location: index.php');
+} else {
+    echo "
     <div id='loginForm'>
         <h2> Bienvenue sur le site </h2>
         <form method='post' name='formConnec'>
@@ -41,5 +43,5 @@ require_once('Utilisateur.php');
             <input type='submit' name='valider' value='Connexion'> </input>
         </form>
     </div> ";
-    }
+}
 ?>
