@@ -1,6 +1,6 @@
 <?php
-$host="localhost" ;
-$user="root" ;
-$password="bob" ;
-$dbname="ptut" ;
+$host = "mysql51-101.perso";
+$user = "pommedepweb";
+$password = "azerty123";
+$dbname = "pommedepweb";
 ?>
