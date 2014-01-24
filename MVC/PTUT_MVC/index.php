@@ -6,6 +6,6 @@
  * Time: 14:57
  */
 
-header("Location : /Controler/index.php");
+header('Location: http://pommedepink.fr/Controler/index.php');
 
 ?>

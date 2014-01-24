@@ -5,8 +5,10 @@
     <title>Connexion</title>
 </head>
 <body>
+<div class='content'>
+
 <div id='shoutbox'>
-    <div id='listeMessageShout'>
+    <ul id='listeMessageShout'>
         <?php
 foreach ($listeShout as $ls => $data)
 {
@@ -16,17 +18,17 @@ foreach ($listeShout as $ls => $data)
     echo "</li>";
 }
     ?>
-    </div>
+    </ul>
 
 
 
 <div id='shoutAction'>
         <form method=post name='formShout'>
-            <textarea name='contenu' rows = 10 cols=100>Entrez votre message ici</textarea><br/>
+            <textarea name='contenu' rows = 10 cols=94>Entrez votre message ici</textarea><br/>
             <a href='Shoutbox.php'><input type='button' value='Rafraichir' /> </a>
             <input type=submit name='envoyer'/>
         </form>
     </div>
-
+    </div>
      </div>
 </body>
